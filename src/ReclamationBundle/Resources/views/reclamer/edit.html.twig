@@ -1,0 +1,68 @@
+{% extends '@AppBundle/Resources/views/default/index.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+    {% block header %}{{ parent() }}{% endblock %}
+    <div class="section__title text-center">
+        <h1 class="title__line">My Reclamation</h1>
+    </div>
+    </br> </br>
+
+    {{ form_start(edit_form) }}
+    <div id="mc_embed_signup_scroll" class="htc__news__inner">
+        {{ form_label(edit_form.nomReclamation, null, {'label_attr': {'class': 'col-md-4 col-xs-12 col-form-label required-label'}}) }}
+        {{ form_widget(edit_form.nomReclamation,{ 'attr': {'class': 'form-control'}}) }}
+    </div>
+    </br>
+    <div id="mc_embed_signup_scroll" class="htc__news__inner">
+        {{ form_label(edit_form.date, null, {'label_attr': {'class': 'col-md-4 col-xs-12 col-form-label required-label'}}) }}
+        {{ form_widget(edit_form.date,{ 'attr': {'class': 'form-control datepicker'}}) }}
+    </div>
+    </br>
+    <div id="mc_embed_signup_scroll" class="htc__news__inner">
+        {{ form_label(edit_form.description, null, {'label_attr': {'class': 'col-md-4 col-xs-12 col-form-label required-label'}}) }}
+        {{ form_widget(edit_form.description,{ 'attr': {'class': 'form-control'}}) }}
+    </div>
+    </br>
+    <div id="mc_embed_signup_scroll" class="htc__news__inner">
+        {{ form_label(edit_form.idStaff, null, {'label_attr': {'class': 'col-md-4 col-xs-12 col-form-label required-label'}}) }}
+        {{ form_widget(edit_form.idStaff,{ 'attr': {'class': 'form-control'}}) }}
+    </div>
+    </br>
+        {{ form_widget(edit_form) }}
+<div id="mc_embed_signup_scroll" class="htc__news__inner">
+    <div class="choose__inner">
+        <div id="mc_embed_signup_scroll" class="htc__news__inner">
+            <div class="slider__btn">
+        <input class="dcare__btn" type="submit" value="Edit" />
+            </div>
+        </div>
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <h4> <a href="{{ path('reclamer_index') }}">Back to the list</a></h4>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <div id="mc_embed_signup_scroll" class="htc__news__inner">
+                <div class="slider__btn">
+                <input class="dcare__btn" type="submit" value="Delete">
+                </div>
+            </div>
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+</div>
+    {% block footer %}{{ parent() }}{% endblock %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        jQuery(document).ready(function() {
+            $('.datepicker').datepicker();
+        });
+    </script>
+{% endblock %}

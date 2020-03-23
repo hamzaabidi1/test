@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Enfant" table="enfant">
+    <indexes>
+      <index name="id_classe" columns="id_classe"/>
+      <index name="id_parent" columns="id_parent"/>
+    </indexes>
+    <id name="idEnfant" type="integer" column="id_enfant">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nom" type="string" column="nom" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="prenom" type="string" column="prenom" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="age" type="integer" column="age" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="cantine" type="integer" column="cantine" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="idClasse" target-entity="Classe" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_classe" referenced-column-name="id_classe"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idParent" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_parent" referenced-column-name="Id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

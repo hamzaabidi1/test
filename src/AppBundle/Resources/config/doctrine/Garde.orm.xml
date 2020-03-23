@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Garde" table="garde">
+    <indexes>
+      <index name="Id_Enfant" columns="Id_Enfant"/>
+      <index name="id_parent" columns="id_parent"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="typeGarde" type="string" column="Type_garde" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="heureDebutGarde" type="string" column="Heure_debut_Garde" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="heureFinGarde" type="string" column="Heure_fin_Garde" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="dateGarde" type="string" column="Date_Garde" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="statut" type="string" column="statut" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="idEnfant" target-entity="Enfant" fetch="LAZY">
+      <join-columns>
+        <join-column name="Id_Enfant" referenced-column-name="id_enfant"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idParent" target-entity="User" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_parent" referenced-column-name="Id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

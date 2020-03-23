@@ -1,0 +1,21 @@
+reclamation:
+    resource: "@ReclamationBundle/Resources/config/routing.yml"
+    prefix:   /reclamation
+
+app_reclamer:
+    resource: "@ReclamationBundle/Controller/ReclamerController.php"
+    type:     annotation
+
+app_demande:
+    resource: "@DemandeBundle/Controller/DemandeController.php"
+    type:     annotation
+
+demande:
+    resource: "@DemandeBundle/Resources/config/routing.yml"
+    prefix:   /demande
+app_bundle:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

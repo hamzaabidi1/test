@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Coursactivite" table="coursactivite">
+    <indexes>
+      <index name="id_user" columns="id_user"/>
+    </indexes>
+    <id name="idCours" type="integer" column="id_cours">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="nom" type="string" column="nom" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="date" type="string" column="date" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="heuredebut" type="string" column="heuredebut" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="heurefin" type="string" column="heurefin" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="salle" type="string" column="salle" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="type" type="string" column="type" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="idUser" type="integer" column="id_user" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-many field="idClasse" target-entity="Classe" mapped-by="idCours" fetch="LAZY"/>
+  </entity>
+</doctrine-mapping>
