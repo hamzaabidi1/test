@@ -25,4 +25,13 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         return $this->render('AppBundle:default:about-us.html.twig');
     }
+
+    /**
+     * @Route("/ask", name="ask")
+     */
+    public function askAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:default:Ask.html.twig');
+    }
 }

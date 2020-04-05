@@ -47,7 +47,7 @@
                                         <li class="drop"><a href="{{ path('homepage') }}">Home</a></li>
                                         <li class="drop"><a href="#">Class</a></li>
                                         <li class="drop"><a href="#">Event</a></li>
-                                        <li class="drop"><a href="#">Pages</a>
+                                     {#  <li class="drop"><a href="#">Pages</a>
                                             <ul class="dropdown__menu">
                                                 <li><a href="about-us.html">about us</a></li>
                                                 <li><a href="service.html">our service</a></li>
@@ -57,11 +57,13 @@
                                                 <li><a href="wishlist.html">wishlist page</a></li>
                                                 <li><a href="checkout.html">checkout page</a></li>
                                             </ul>
-                                        </li>
+                                        </li>#}
                                         <li class="drop"><a href="#">canteen</a></li>
                                         <li class="drop"><a href="#">nursery</a></li>
                                         <li class="drop"><a href="{{ path('reclamer_new') }}">Reclamation</a></li>
                                         <li class="drop"><a href="{{ path('demande_new') }}">Request</a></li>
+                                        <li class="drop"><a href="{{ path('aboutus') }}">About-Us</a></li>
+                                        <li class="drop"><a href="{{ path('ask') }}">Ask</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -69,16 +71,7 @@
 
 
                     </div>
-                    <!-- Mobile Menu -->
-                    <div class="mobile-menu d-block d-lg-none">
-                        <div class="logo">
-                            <a href="index.html"><img src="{{ asset('images/logo/junior.png') }}" alt="logo"></a>
-                        </div>
-                        <a class="minicart-trigger" href="#">
-                            <i class="fa fa-shopping-basket"></i>
-                        </a>
-                    </div>
-                    <!-- Mobile Menu -->
+
                 </div>
             </div>
             <!-- End Mainmenu Area -->
@@ -137,7 +130,7 @@
     <!-- End Slider Area -->
 
     <!-- Start Welcame Area -->
-    <section class="junior__welcome__area section-padding--md wel-comeimage--2 ">
+    <section class="junior__welcome__area section-padding--md wel-come image--2baby ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
