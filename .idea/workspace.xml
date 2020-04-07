@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f160f79-7ee8-4227-af15-4d4eded651ee" name="Default Changelist" comment="" />
+    <list default="true" id="9f160f79-7ee8-4227-af15-4d4eded651ee" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/Composer_05_04_2020_17_31_c.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/chatbot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/images/bg-png/2baby.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/images/choose/big-img/middle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/images/team/dessin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/images/team/music.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/images/team/sport.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/active.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/bootstrap-datepicker.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/chatbot.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/plugins.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/popper.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/vendor/jquery-3.2.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/js/vendor/modernizr-3.5.0.min.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -12,6 +35,9 @@
     <execution>
       <phar pharPath="$PROJECT_DIR$/composer.phar" interpreterId="ecf5e472-b4f0-410a-a510-46575d2dd4ef" />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -54,9 +80,11 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php56" />
       <path value="$PROJECT_DIR$/vendor/incenteev/composer-parameter-handler" />
+      <path value="$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="1ZIkE2wG6x6QFW1ixvO1qYidqTH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -152,6 +180,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1584611318905" />
+    <state x="388" y="80" key="MultipleFileMergeDialog" timestamp="1586292600853">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="388" y="80" key="MultipleFileMergeDialog/0.0.1366.728@0.0.1366.728" timestamp="1586292600853" />
     <state x="92" y="92" width="1182" height="544" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1584725546593">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
