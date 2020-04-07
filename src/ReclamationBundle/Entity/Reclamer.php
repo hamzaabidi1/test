@@ -51,7 +51,6 @@ class Reclamer
     private $idReclamation;
 
     /**
-     * @var \AppBundle\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({
@@ -61,7 +60,6 @@ class Reclamer
     private $idParent;
 
     /**
-     * @var \AppBundle\Entity\User
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumns({

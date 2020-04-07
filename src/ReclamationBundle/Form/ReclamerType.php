@@ -27,7 +27,7 @@ class ReclamerType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('idStaff', EntityType::class, [
                 'class' => 'AppBundle:User',
-                'choice_label' => 'nom','label' => 'Membre saff'
+                'choice_label' => 'username','label' => 'Membre saff'
             ]);
     }
 

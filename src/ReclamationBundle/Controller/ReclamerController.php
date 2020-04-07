@@ -24,6 +24,8 @@ class ReclamerController extends Controller
      */
     public function indexAction()
     {
+        if (!$this->get('security.context')->isGranted('ROLE_PARENT'))
+            $this->redirectToRoute('home');
         $em = $this->getDoctrine()->getManager();
 
         $reclamers = $em->getRepository('ReclamationBundle:Reclamer')->findAll();
@@ -41,6 +43,11 @@ class ReclamerController extends Controller
      */
     public function newAction(Request $request)
     {
+
+        if (!(in_array(['ROLE_PARENT', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN'], $this->getUser()->getRoles()))) {
+            return $this->redirectToRoute('homepage');
+        }
+
         $reclamer = new Reclamer();
         $form = $this->createForm('ReclamationBundle\Form\ReclamerType', $reclamer);
         $form->handleRequest($request);
@@ -48,7 +55,7 @@ class ReclamerController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $reclamer->setStatut('en cours');
-            $reclamer->setIdParent($this->getUser());
+            $reclamer->setIdParent($this->getUser()->getId());
             $em->persist($reclamer);
             $em->flush();
 
@@ -56,7 +63,7 @@ class ReclamerController extends Controller
             $mailer = $this->get('mailer');
             $message = (new \Swift_Message('Reclamation'))
                 ->setFrom('pidev.20@gmail.com')
-                ->setTo('labidihamza099@gmail.com')
+                ->setTo($this->getUser()->getEmail())
                 ->setBody(
                     "Votre Rclamation est prise en considération et sera taité le plus tot possible"
 

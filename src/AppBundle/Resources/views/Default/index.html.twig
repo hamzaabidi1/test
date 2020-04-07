@@ -20,8 +20,15 @@
                         <div class="col-md-5 col-lg-6 col-sm-12">
                             <div class="jun__header__top__right">
                                 <ul class="accounting d-flex justify-content-lg-end justify-content-md-end justify-content-start align-items-center">
-                                    <li><a class="login-trigger" href="#">Login</a></li>
-                                    <li><a class="accountbox-trigger" href="#">Register</a></li>
+                                    {% if app.user %}
+                                        <li><a class="login-trigger" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                                        </li>
+                                    {% else %}
+                                        <li><a class="login-trigger"
+                                               href="{{ path('fos_user_security_login') }}">Login</a></li>
+                                        <li><a class="accountbox-trigger"
+                                               href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </div>
@@ -47,17 +54,17 @@
                                         <li class="drop"><a href="{{ path('homepage') }}">Home</a></li>
                                         <li class="drop"><a href="#">Class</a></li>
                                         <li class="drop"><a href="#">Event</a></li>
-                                     {#  <li class="drop"><a href="#">Pages</a>
-                                            <ul class="dropdown__menu">
-                                                <li><a href="about-us.html">about us</a></li>
-                                                <li><a href="service.html">our service</a></li>
-                                                <li><a href="class-details.html">class details</a></li>
-                                                <li><a href="gallery.html">gallery</a></li>
-                                                <li><a href="gallery-details.html">gallery Details</a></li>
-                                                <li><a href="wishlist.html">wishlist page</a></li>
-                                                <li><a href="checkout.html">checkout page</a></li>
-                                            </ul>
-                                        </li>#}
+                                        {#  <li class="drop"><a href="#">Pages</a>
+                                               <ul class="dropdown__menu">
+                                                   <li><a href="about-us.html">about us</a></li>
+                                                   <li><a href="service.html">our service</a></li>
+                                                   <li><a href="class-details.html">class details</a></li>
+                                                   <li><a href="gallery.html">gallery</a></li>
+                                                   <li><a href="gallery-details.html">gallery Details</a></li>
+                                                   <li><a href="wishlist.html">wishlist page</a></li>
+                                                   <li><a href="checkout.html">checkout page</a></li>
+                                               </ul>
+                                           </li>#}
                                         <li class="drop"><a href="#">canteen</a></li>
                                         <li class="drop"><a href="#">nursery</a></li>
                                         <li class="drop"><a href="{{ path('reclamer_new') }}">Reclamation</a></li>
@@ -855,7 +862,7 @@
     </section>
     </br>
     </br>
-    
+
 
     <!-- End Subscribe Area -->
     <!-- Footer Area -->

@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\GroupInterface;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
@@ -10,71 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User
+class User extends BaseUser
 {
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=255, nullable=false)
-     */
-    private $role;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
-     */
-    private $nom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=255, nullable=false)
-     */
-    private $prenom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=255, nullable=false)
-     */
-    private $mail;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="num", type="integer", nullable=false)
-     */
-    private $num;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mdp", type="string", length=255, nullable=false)
-     */
-    private $mdp;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="adresse", type="string", length=255, nullable=false)
-     */
-    private $adresse;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="emploi", type="string", length=255, nullable=false)
-     */
-    private $emploi;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="valide", type="integer", nullable=false)
-     */
-    private $valide;
-
     /**
      * @var integer
      *
@@ -82,38 +22,125 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
-     * @return string
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
      */
-    public function getRole()
+    protected $prenom;
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="phone_number", type="integer", nullable=true)
+     */
+    private $phone;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="emploi", type="string", length=255, nullable=true)
+     */
+    private $emploi;
+
+    /**
+     * @var string
+     */
+    protected $username;
+
+    /**
+     * @var string
+     */
+    protected $usernameCanonical;
+
+    /**
+     * @var string
+     */
+    protected $email;
+
+    /**
+     * @var string
+     */
+    protected $emailCanonical;
+
+    /**
+     * @var bool
+     */
+    protected $enabled;
+
+    /**
+     * The salt to use for hashing.
+     *
+     * @var string
+     */
+    protected $salt;
+
+    /**
+     * Encrypted password. Must be persisted.
+     *
+     * @var string
+     */
+    protected $password;
+
+    /**
+     * Plain password. Used for model validation. Must not be persisted.
+     *
+     * @var string
+     */
+    protected $plainPassword;
+
+    /**
+     * @var \DateTime|null
+     */
+    protected $lastLogin;
+
+    /**
+     * Random string sent to the user email address in order to verify it.
+     *
+     * @var string|null
+     */
+    protected $confirmationToken;
+
+    /**
+     * @var \DateTime|null
+     */
+    protected $passwordRequestedAt;
+
+    /**
+     * @var GroupInterface[]|Collection
+     */
+    protected $groups;
+
+    /**
+     * @var array
+     */
+    protected $roles;
+
+    /**
+     * @return int
+     */
+    public function getId()
     {
-        return $this->role;
+        return $this->id;
     }
 
     /**
-     * @param string $role
+     * @param int $id
      */
-    public function setRole($role)
+    public function setId($id)
     {
-        $this->role = $role;
-    }
-
-    /**
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * @param string $nom
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
+        $this->id = $id;
     }
 
     /**
@@ -133,51 +160,19 @@ class User
     }
 
     /**
-     * @return string
-     */
-    public function getMail()
-    {
-        return $this->mail;
-    }
-
-    /**
-     * @param string $mail
-     */
-    public function setMail($mail)
-    {
-        $this->mail = $mail;
-    }
-
-    /**
      * @return int
      */
-    public function getNum()
+    public function getPhone()
     {
-        return $this->num;
+        return $this->phone;
     }
 
     /**
-     * @param int $num
+     * @param int $phone
      */
-    public function setNum($num)
+    public function setPhone($phone)
     {
-        $this->num = $num;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMdp()
-    {
-        return $this->mdp;
-    }
-
-    /**
-     * @param string $mdp
-     */
-    public function setMdp($mdp)
-    {
-        $this->mdp = $mdp;
+        $this->phone = $phone;
     }
 
     /**
@@ -213,37 +208,189 @@ class User
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getValide()
+    public function getUsername()
     {
-        return $this->valide;
+        return $this->username;
     }
 
     /**
-     * @param int $valide
+     * @param string $username
      */
-    public function setValide($valide)
+    public function setUsername($username)
     {
-        $this->valide = $valide;
+        $this->username = $username;
     }
 
     /**
-     * @return int
+     * @return string
      */
-    public function getId()
+    public function getUsernameCanonical()
     {
-        return $this->id;
+        return $this->usernameCanonical;
     }
 
     /**
-     * @param int $id
+     * @param string $usernameCanonical
      */
-    public function setId($id)
+    public function setUsernameCanonical($usernameCanonical)
     {
-        $this->id = $id;
+        $this->usernameCanonical = $usernameCanonical;
     }
 
+    /**
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param string $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmailCanonical()
+    {
+        return $this->emailCanonical;
+    }
+
+    /**
+     * @param string $emailCanonical
+     */
+    public function setEmailCanonical($emailCanonical)
+    {
+        $this->emailCanonical = $emailCanonical;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param bool $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->salt;
+    }
+
+    /**
+     * @param string $salt
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
+    }
+
+
+    /**
+     * @return string|null
+     */
+    public function getConfirmationToken()
+    {
+        return $this->confirmationToken;
+    }
+
+    /**
+     * @param string|null $confirmationToken
+     */
+    public function setConfirmationToken($confirmationToken)
+    {
+        $this->confirmationToken = $confirmationToken;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getPasswordRequestedAt()
+    {
+        return $this->passwordRequestedAt;
+    }
+
+
+    /**
+     * @return Collection|GroupInterface[]
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @param Collection|GroupInterface[] $groups
+     */
+    public function setGroups($groups)
+    {
+        $this->groups = $groups;
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
 
 }
-
