@@ -1,0 +1,60 @@
+{% extends '@AppBundle/Resources/views/default/index.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+{% block body %}
+    {% block header %}{{ parent() }}{% endblock %}
+
+    <div class="section__title text-center">
+        <h1 class="title__line">Reclamation</h1>
+    </div>
+    </br> </br>
+
+    {{ form_start(form) }}
+    <div id="mc_embed_signup_scroll" class="htc__news__inner">
+    {{ form_label(form.nomReclamation, null, {'label_attr': {'class': 'col-md-4 col-xs-12 col-form-label required-label'}}) }}
+    {{ form_widget(form.nomReclamation,{ 'attr': {'class': 'form-control'}}) }}
+</div>
+    </br>
+<div id="mc_embed_signup_scroll" class="htc__news__inner">
+    {{ form_label(form.date, null, {'label_attr': {'class': 'col-md-4 col-xs-12 col-form-label required-label'}}) }}
+    {{ form_widget(form.date,{ 'attr': {'class': 'form-control datepicker'}}) }}
+</div>
+    </br>
+<div id="mc_embed_signup_scroll" class="htc__news__inner">
+    {{ form_label(form.description, null, {'label_attr': {'class': 'col-md-4 col-xs-12 col-form-label required-label'}}) }}
+    {{ form_widget(form.description,{ 'attr': {'class': 'form-control'}}) }}
+</div>
+    </br>
+    <div id="mc_embed_signup_scroll" class="htc__news__inner">
+    {{ form_label(form.idStaff, null, {'label_attr': {'class': 'col-md-4 col-xs-12 col-form-label required-label'}}) }}
+    {{ form_widget(form.idStaff,{ 'attr': {'class': 'form-control'}}) }}
+    {{ form_widget(form) }}
+    </div>
+    </br>
+<div id="mc_embed_signup_scroll" class="htc__news__inner">
+    <div class="slider__btn">
+    <input class="dcare__btn" type="submit" value="Add Reclamation"/>
+    </div>
+</div>
+    {{ form_end(form) }}
+<div id="mc_embed_signup_scroll" class="htc__news__inner">
+<div class="choose__inner">
+    <ul>
+        <li>
+            <h4> <a href="{{ path('reclamer_index') }}">Reclamation List</a></h4>
+        </li>
+    </ul>
+</div>
+</div>
+
+    {% block footer %}{{ parent() }}{% endblock %}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        jQuery(document).ready(function() {
+            $('.datepicker').datepicker();
+        });
+    </script>
+{% endblock %}

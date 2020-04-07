@@ -1,0 +1,11 @@
+club_homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Default:index }
+
+club_aboutus:
+    path:     /about
+    defaults: { _controller: AppBundle:Default:aboutus }
+
+club_ask:
+    path:     /ask
+    defaults: { _controller: AppBundle:Default:ask }

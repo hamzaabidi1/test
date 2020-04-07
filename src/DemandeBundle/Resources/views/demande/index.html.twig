@@ -1,0 +1,61 @@
+{% extends '@AppBundle/Resources/views/default/index.html.twig' %}
+
+{% block body %}
+    {% block header %}{{ parent() }}{% endblock %}
+
+    <div class="section__title text-center">
+        <h1 class="title__line">Request List</h1>
+    </div>
+    </br> </br>
+<div>
+    <input id="myInput" type="search" placeholder="Search ..."  style="background-image: url({{ asset('images/icon/seachicon.png')}}) ;background-repeat: no-repeat ; height: 40px ; background-position: right center"  />
+</div>
+    </br>
+    </br>
+
+    <div class="wishlist-table table-responsive">
+    <table >
+        <thead>
+            <tr>
+                <th><h4>Titre</h4></th>
+                <th><h4>Statut</h4></th>
+                <th><h4>Reponse</h4></th>
+                <th><h4>Description</h4></th>
+                <th><h4>Actions</h4></th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+        {% for demande in demandes %}
+            <tr>
+                <td><a href="{{ path('demande_show', { 'idDemande': demande.idDemande }) }}">{{ demande.nomDemande }}</a></td>
+                <td>{{ demande.statut }}</td>
+                <td>{{ demande.reponse }}</td>
+                <td>{{ demande.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <h4> <a href="{{ path('demande_show', { 'idDemande': demande.idDemande }) }}">show</a></h4>
+                        </li>
+                        <li>
+                            <h4> <a href="{{ path('demande_edit', { 'idDemande': demande.idDemande }) }}">edit</a></h4>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+<div id="mc_embed_signup_scroll" class="htc__news__inner">
+    <div class="choose__inner">
+    <ul>
+        <li>
+            <h4><a href="{{ path('demande_new') }}">Add Request</a></h4>
+        </li>
+    </ul>
+    </div>
+</div>
+    {% block footer %}{{ parent() }}{% endblock %}
+
+{% endblock %}
+

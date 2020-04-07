@@ -1,0 +1,54 @@
+{% extends '@AppBundle/Resources/views/default/index.html.twig' %}
+
+{% block body %}
+    {% block header %}{{ parent() }}{% endblock %}
+    <div class="section__title text-center">
+        <h1 class="title__line">Reclamation Details</h1>
+    </div>
+    </br> </br>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Titre</th>
+            <td>{{ reclamer.nomReclamation }}</td>
+        </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ reclamer.statut }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ reclamer.date | date('Y-m-d') }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ reclamer.description }}</td>
+            </tr>
+
+
+        </tbody>
+    </table>
+<div id="mc_embed_signup_scroll" class="htc__news__inner">
+    <div class="choose__inner">
+    <ul>
+        <li>
+           <h4> <a href="{{ path('reclamer_index') }}">Reclamation List</a></h4>
+        </li>
+        <li>
+            <h4> <a href="{{ path('reclamer_edit', { 'idReclamation': reclamer.idReclamation }) }}">Edit</a></h4>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+            <div id="mc_embed_signup_scroll" class="htc__news__inner">
+                <div class="slider__btn">
+                <input class="dcare__btn" type="submit" value="Delete">
+                </div>
+            </div>
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+</div>
+    {% block footer %}{{ parent() }}{% endblock %}
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends '@AppBundle/Resources/views/default/index.html.twig' %}
+
+{% block body %}
+{% block header %}
+
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/chatbot.css') }}">
+
+{% endblock %}
+</br></br>
+    <div style="overflow: auto;"  >
+<div id="container">
+    <center><h4><a class="voice" href="#">Ask Now</a></h4></center>
+</div>
+</div>
+{% endblock %}
+
