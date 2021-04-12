@@ -1,0 +1,11 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div style="padding: 10px">
+    {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+    <div class="single-input">
+        {{ form_widget(form.plainPassword ,{ 'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="btn-group pull-right" style="margin-bottom: 20px">
+        <input type="submit" class="btn btn-outline-success" value="submit"/>
+    </div>
+    {{ form_end(form) }}
+</div>

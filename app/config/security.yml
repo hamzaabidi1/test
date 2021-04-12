@@ -5,7 +5,7 @@ security:
     role_hierarchy:
         ROLE_PARENT:      ROLE_PARENT
         ROLE_STAFF:       ROLE_STAFF
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_ADMIN:       [ROLE_USER,ROLE_STAFF,ROLE_PARENT]
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
@@ -19,6 +19,7 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+            access_denied_handler: security.access.handler
 
             logout:       true
             anonymous:    true
@@ -27,6 +28,6 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/reclamer/new, role: IS_AUTHENTICATED_FULLY }
-        - { path: ^/demande/new, role: [IS_AUTHENTICATED_FULLY,ROLE_USER] }
+        - { path: ^/reclamer/*, role: ROLE_PARENT}
+        - { path: ^/demande/*, role: [IS_AUTHENTICATED_FULLY] }
         - { path: ^/admin/, role: ROLE_ADMIN }

@@ -24,11 +24,15 @@ class ReclamerController extends Controller
      */
     public function indexAction()
     {
-        if (!$this->get('security.context')->isGranted('ROLE_PARENT'))
-            $this->redirectToRoute('home');
         $em = $this->getDoctrine()->getManager();
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
 
-        $reclamers = $em->getRepository('ReclamationBundle:Reclamer')->findAll();
+        if ($isAdmin) {
+            $reclamers = $em->getRepository('ReclamationBundle:Reclamer')->findAll();
+        } else {
+            $reclamers = $em->getRepository('ReclamationBundle:Reclamer')->findBy(['idParent' => $this->getUser()->getId()]);
+        }
+
 
         return $this->render('ReclamationBundle:reclamer:index.html.twig', array(
             'reclamers' => $reclamers,
@@ -43,11 +47,6 @@ class ReclamerController extends Controller
      */
     public function newAction(Request $request)
     {
-
-        if (!(in_array(['ROLE_PARENT', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN'], $this->getUser()->getRoles()))) {
-            return $this->redirectToRoute('homepage');
-        }
-
         $reclamer = new Reclamer();
         $form = $this->createForm('ReclamationBundle\Form\ReclamerType', $reclamer);
         $form->handleRequest($request);
@@ -113,7 +112,7 @@ class ReclamerController extends Controller
             $mailer = $this->get('mailer');
             $message = (new \Swift_Message('Reclamation'))
                 ->setFrom('pidev.20@gmail.com')
-                ->setTo('labidihamza099@gmail.com')
+                ->setTo($this->getUser()->getEmail())
                 ->setBody(
                     "Votre Rclamation a été modifier et prise en considération et sera taité le plus tot possible"
 
@@ -150,7 +149,7 @@ class ReclamerController extends Controller
             $mailer = $this->get('mailer');
             $message = (new \Swift_Message('Reclamation'))
                 ->setFrom('pidev.20@gmail.com')
-                ->setTo('labidihamza099@gmail.com')
+                ->setTo($this->getUser()->getEmail())
                 ->setBody(
                     "Votre Rclamation a été retiré "
 

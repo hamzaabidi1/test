@@ -84,3 +84,6 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\Type\RegistrationType
+    resetting:
+        form:
+            type: AppBundle\Form\Type\ResettingFormType

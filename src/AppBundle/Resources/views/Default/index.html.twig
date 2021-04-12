@@ -21,13 +21,12 @@
                             <div class="jun__header__top__right">
                                 <ul class="accounting d-flex justify-content-lg-end justify-content-md-end justify-content-start align-items-center">
                                     {% if app.user %}
-                                        <li><a class="login-trigger" href="{{ path('fos_user_security_logout') }}">Logout</a>
+                                        <li><a href="{{ path('fos_user_security_logout') }}">Logout</a>
                                         </li>
                                     {% else %}
-                                        <li><a class="login-trigger"
-                                               href="{{ path('fos_user_security_login') }}">Login</a></li>
-                                        <li><a class="accountbox-trigger"
-                                               href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                                        <li><a class="login-trigger">Login</a></li>
+                                        <li><a class="accountbox-trigger">Register</a>
+                                        </li>
                                     {% endif %}
                                 </ul>
                             </div>
@@ -1018,38 +1017,8 @@
         <div class="accountbox">
             <div class="accountbox__inner">
                 <h4>continue to register</h4>
-                <div class="accountbox__login">
-                    <form action="#">
-                        <div class="single-input">
-                            <input type="text" placeholder="User name">
-                        </div>
-                        <div class="single-input">
-                            <input type="email" placeholder="E-mail">
-                        </div>
-                        <div class="single-input">
-                            <input type="text" placeholder="Phone">
-                        </div>
-                        <div class="single-input">
-                            <input type="password" placeholder="Password">
-                        </div>
-                        <div class="single-input">
-                            <input type="password" placeholder="Confirm password">
-                        </div>
-                        <div class="single-input text-center">
-                            <button type="submit" class="sign__btn">Sign Up Now</button>
-                        </div>
-                        <div class="accountbox-login__others text-center">
-                            <h6>or register with</h6>
-                            <ul class="dacre__social__link d-flex justify-content-center">
-                                <li class="facebook"><a target="_blank" href="https://www.facebook.com/"><span
-                                                class="ti-facebook"></span></a></li>
-                                <li class="twitter"><a target="_blank" href="https://twitter.com/"><span
-                                                class="ti-twitter"></span></a></li>
-                                <li class="pinterest"><a target="_blank" href="#"><span
-                                                class="ti-google"></span></a></li>
-                            </ul>
-                        </div>
-                    </form>
+                <div class="accountbox__register">
+
                 </div>
                 <span class="accountbox-close-button"><i class="zmdi zmdi-close"></i></span>
             </div>
@@ -1063,27 +1032,6 @@
             <div class="accountbox__inner">
                 <h4>Login to Continue</h4>
                 <div class="accountbox__login">
-                    <form action="#">
-                        <div class="single-input">
-                            <input type="email" placeholder="E-mail">
-                        </div>
-                        <div class="single-input">
-                            <input type="password" placeholder="Password">
-                        </div>
-                        <div class="single-input text-center">
-                            <button type="submit" class="sign__btn">SUBMIT</button>
-                        </div>
-                        <div class="accountbox-login__others text-center">
-                            <ul class="dacre__social__link d-flex justify-content-center">
-                                <li class="facebook"><a target="_blank" href="https://www.facebook.com/"><span
-                                                class="ti-facebook"></span></a></li>
-                                <li class="twitter"><a target="_blank" href="https://twitter.com/"><span
-                                                class="ti-twitter"></span></a></li>
-                                <li class="pinterest"><a target="_blank" href="#"><span
-                                                class="ti-google"></span></a></li>
-                            </ul>
-                        </div>
-                    </form>
                 </div>
                 <span class="accountbox-close-button"><i class="zmdi zmdi-close"></i></span>
             </div>
@@ -1093,3 +1041,22 @@
 
 
 {% endblock %}
+  {% block javascripts %}
+      {{ parent() }}
+      <script>
+          $(document).ready(() => {
+              $.ajax({
+                  url: "{{ path('fos_user_security_login') }}",
+                  success: function (data) {
+                      $('.accountbox__login').html(data);
+                  }
+              });
+              $.ajax({
+                  url: "{{ path('fos_user_registration_register') }}",
+                  success: function (data) {
+                      $('.accountbox__register').html(data);
+                  }
+              });
+          })
+      </script>
+  {% endblock %}

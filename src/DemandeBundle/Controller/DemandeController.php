@@ -6,7 +6,8 @@ namespace DemandeBundle\Controller;
 use DemandeBundle\Entity\Demande;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Demande controller.
@@ -23,9 +24,14 @@ class DemandeController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
 
-        $demandes = $em->getRepository('DemandeBundle:Demande')->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $isAdmin = $this->isGranted('ROLE_ADMIN');
+        if ($isAdmin) {
+            $demandes = $em->getRepository('DemandeBundle:Demande')->findAll();
+        } else {
+            $demandes = $em->getRepository('DemandeBundle:Demande')->findBy(['idUser' => $this->getUser()->getId()]);
+        }
 
         return $this->render('DemandeBundle:demande:index.html.twig', array(
             'demandes' => $demandes,
@@ -48,14 +54,14 @@ class DemandeController extends Controller
             $em = $this->getDoctrine()->getManager();
             $demande->setStatut('en cours');
             $demande->setReponse('en cours');
-            $demande->setIdUser($this->getUser());
+            $demande->setIdUser($this->getUser()->getId());
             $em->persist($demande);
             $em->flush();
 
             $mailer = $this->get('mailer');
             $message = (new \Swift_Message('Demande'))
                 ->setFrom('pidev.20@gmail.com')
-                ->setTo('labidihamza099@gmail.com')
+                ->setTo($this->getUser()->getEmail())
                 ->setBody(
                     "Votre Dmande est prise en considération et sera taité le plus tot possible"
 
@@ -105,7 +111,7 @@ class DemandeController extends Controller
             $mailer = $this->get('mailer');
             $message = (new \Swift_Message('Demande'))
                 ->setFrom('pidev.20@gmail.com')
-                ->setTo('labidihamza099@gmail.com')
+                ->setTo($this->getUser()->getEmail())
                 ->setBody(
                     "Votre Demande a été modifier et prise en considération et sera taité le plus tot possible"
 
@@ -141,7 +147,7 @@ class DemandeController extends Controller
             $mailer = $this->get('mailer');
             $message = (new \Swift_Message('Reclamation'))
                 ->setFrom('pidev.20@gmail.com')
-                ->setTo('labidihamza099@gmail.com')
+                ->setTo($this->getUser()->getEmail())
                 ->setBody(
                     "Votre Demande a été retiré "
 
@@ -165,7 +171,6 @@ class DemandeController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('demande_delete', array('idDemande' => $demande->getIddemande())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

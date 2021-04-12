@@ -1,0 +1,13 @@
+{% extends '@AppBundle/Resources/views/default/index.html.twig' %}
+
+{% block body %}
+    {% block header %}{{ parent() }}{% endblock %}
+    {% block fos_user_content %}
+        <div class="section__title text-center">
+            <h1 class="title__line">Reset password</h1>
+        </div>
+        {% include "@FOSUser/Resetting/request_content.html.twig" %}
+    {% endblock fos_user_content %}
+    {% block footer %}{{ parent() }}{% endblock %}
+
+{% endblock %}
